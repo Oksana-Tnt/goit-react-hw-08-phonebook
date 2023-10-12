@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
 import Contact from 'components/Contact/Contact';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 import ErrorCard from 'components/ErrorCard/ErrorCard';
 import Loader from 'components/Loader/Loader';
-import { fetchContacts } from 'redux/contactsOperations';
 import { useFetchContactsQuery } from 'redux/contactsAPI';
 
 const ContactList = () => {
@@ -21,7 +18,7 @@ const ContactList = () => {
   };
 
   const filteredContacts = getFilterContacts();
-  console.log(filter);
+  console.log(contacts);
   return (
     <>
       {isLoading && <Loader />}

@@ -9,7 +9,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { contactsReducer } from './contactsSlice';
 import { contactsAPI } from './contactsAPI';
 import { filterReducer } from './FilterSlice';
 
