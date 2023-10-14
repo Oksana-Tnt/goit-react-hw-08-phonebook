@@ -2,18 +2,23 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { initialState } from './initialState';
+
 import {
-  fetchContacts,
-  addContacts,
-  deleteContacts,
-} from './contactsOperations';
+  addContactsThunk,
+  deleteContactsThunk,
+  fetchContactsThunk,
+} from './thunk';
 
 const defaultStatus = {
   pending: 'pending',
   fulfilled: 'fulfilled',
   rejected: 'rejected',
 };
-const customActions = [fetchContacts, addContacts, deleteContacts];
+const customActions = [
+  fetchContactsThunk,
+  addContactsThunk,
+  deleteContactsThunk,
+];
 
 const getCustomActions = status => {
   return customActions.map(el => el[status]);
@@ -38,17 +43,17 @@ export const contactsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+      .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.status = defaultStatus.fulfilled;
         state.contacts = payload;
         state.error = '';
       })
-      .addCase(addContacts.fulfilled, (state, { payload }) => {
+      .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
         state.status = defaultStatus.fulfilled;
         state.contacts.unshift(payload);
         state.error = '';
       })
-      .addCase(deleteContacts.fulfilled, (state, { payload }) => {
+      .addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
         state.status = defaultStatus.fulfilled;
         state.contacts = state.contacts.filter(
           contact => contact.id !== payload.id

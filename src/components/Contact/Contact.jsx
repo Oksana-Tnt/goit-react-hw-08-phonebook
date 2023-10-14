@@ -1,22 +1,22 @@
 import React from 'react';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import IconButton from 'components/IconButton/IconButton';
-import { useDeleteContactsMutation } from 'redux/contactsAPI';
+import { useDispatch } from 'react-redux';
+import { deleteContactsThunk } from 'redux/contacts/thunk';
 
 const Contact = ({ id, name, number }) => {
-const [deleteContacts, {isLoading:isDeleting}]=useDeleteContactsMutation();
+  const dispatch = useDispatch();
   return (
     <>
-    {isDeleting && <h1>deleting...</h1>}
-    <div className="d-grid gap-2 d-flex justify-content-between">
-      {name} : {number}
-      <IconButton
-        onClick={() => deleteContacts(id)}
-        area-label="Delete contact"
-      >
-        <RiDeleteBin6Fill />
-      </IconButton>
-    </div>
+      <div className="d-grid gap-2 d-flex justify-content-between">
+        {name} : {number}
+        <IconButton
+          onClick={() => dispatch(deleteContactsThunk(id))}
+          area-label="Delete contact"
+        >
+          <RiDeleteBin6Fill />
+        </IconButton>
+      </div>
     </>
   );
 };

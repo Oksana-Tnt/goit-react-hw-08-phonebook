@@ -1,9 +1,8 @@
-import { useToast } from '@chakra-ui/react'
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { signUp } from 'redux/auth-service';
-
+import { signUp } from 'redux/auth/auth-service';
+import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
@@ -19,6 +18,7 @@ const RegistrationForm = () => {
   const email = watch('email');
   const password = watch('password');
   const toast = useToast();
+
   return (
     <>
       <h1>RegistrationForm</h1>
@@ -27,17 +27,16 @@ const RegistrationForm = () => {
         onSubmit={handleSubmit(data => {
           signUp(data)
             .then(() => {
-               
-               navigate('/login');
-            })
-            .catch(err => console.log(err));
-            toast({
+              toast({
                 title: 'Account created.',
                 description: "We've created your account for you.",
                 status: 'success',
-                duration: 9000,
+                duration: 5000,
                 isClosable: true,
               });
+              navigate('/login');
+            })
+            .catch(err => toast(err));
         })}
       >
         <div className="mb-3">
@@ -98,9 +97,7 @@ const RegistrationForm = () => {
         <p>{errors.password?.message}</p>
 
         <div className="mb-3">
-          <button type="submit" className="btn btn-primary mb-3"          
-          >
-            
+          <button type="submit" className="btn btn-primary mb-3">
             Sign Up
           </button>
         </div>

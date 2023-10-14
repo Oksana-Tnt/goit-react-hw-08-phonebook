@@ -1,4 +1,3 @@
-
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import FormContact from 'components/FormContact';
@@ -8,12 +7,11 @@ import React, { useState } from 'react';
 import { IoPersonAddSharp } from 'react-icons/io5';
 
 const PhonebookPage = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
 
-    const [isShowModal, setIsShowModal] = useState(false);
-
-    const toggleModal = () => {
-      setIsShowModal(!isShowModal);
-    };
+  const toggleModal = () => {
+    setIsShowModal(!isShowModal);
+  };
 
   return (
     <>

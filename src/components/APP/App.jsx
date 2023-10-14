@@ -11,23 +11,34 @@ import Layout from 'components/Layout/Layout';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
 import PhonebookPage from 'pages/PhonebookPage';
+import * as React from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export const App = () => {
-
   return (
-    <Container>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/phonebook" element={<Suspense>{<PhonebookPage />}</Suspense>}/> 
-          <Route path="/login" element={<Suspense>{<LoginPage />}</Suspense>}/>  
-        <Route path="/signUp" element={<Suspense>{<RegisterPage />}</Suspense>}/>  
-        </Route > 
-        
-           |
-      </Routes>
-      
-     
-    </Container>
+    <ChakraProvider>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+
+            <Route
+              path="/phonebook"
+              element={<Suspense>{<PhonebookPage />}</Suspense>}
+            />
+
+            <Route
+              path="/login"
+              element={<Suspense>{<LoginPage />}</Suspense>}
+            />
+            <Route
+              path="/signUp"
+              element={<Suspense>{<RegisterPage />}</Suspense>}
+            />
+          </Route>
+          |
+        </Routes>
+      </Container>
+    </ChakraProvider>
   );
 };

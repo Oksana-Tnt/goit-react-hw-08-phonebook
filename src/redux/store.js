@@ -10,13 +10,18 @@ import {
 } from 'redux-persist';
 
 import { contactsAPI } from './contactsAPI';
-import { filterReducer } from './FilterSlice';
+import { authReducer } from './auth/authSlice';
+import { contactsReducer } from './contacts/contactsSlice';
+import { filterReducer } from './filter/filterSlice';
 
 export const store = configureStore({
   reducer: {
-    [contactsAPI.reducerPath]: contactsAPI.reducer,
+    // [contactsAPI.reducerPath]: contactsAPI.reducer,
+    contacts: contactsReducer,
     filter: filterReducer,
+    auth: authReducer,
   },
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

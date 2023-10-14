@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from 'react-hook-form';
-import { useAddContactsMutation } from 'redux/contactsAPI';
+import { useDispatch } from 'react-redux';
+import { addContactsThunk } from 'redux/contacts/thunk';
 
 const FormContact = ({ closeModal }) => {
   const {
@@ -12,14 +13,15 @@ const FormContact = ({ closeModal }) => {
 
   const name = watch('name');
   const number = watch('number');
-  
-  const [addContacts] = useAddContactsMutation();
 
+  // const [addContacts] = useAddContactsMutation();
+  const dispatch = useDispatch();
   return (
     <form
       className="row g-3"
       onSubmit={handleSubmit(data => {
-        addContacts(data);
+        dispatch(addContactsThunk(data));
+
         closeModal();
       })}
     >
