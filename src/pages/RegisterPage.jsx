@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const handleLogin = () => {
     navigate('/login');
   };
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1220px)' });
   return (
     <Box
       h="100vh"

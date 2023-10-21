@@ -36,11 +36,7 @@ const PhonebookPage = () => {
         pl={10}
         pr={10}
         position="relative"
-        h={
-          contacts.length === 0 || contacts.length === 2 || !isTabletOrMobile
-            ? '100vh'
-            : '100%'
-        }
+        h={contacts.length < 2 || !isTabletOrMobile ? '100vh' : '100%'}
         backgroundImage={backgroundImg}
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
