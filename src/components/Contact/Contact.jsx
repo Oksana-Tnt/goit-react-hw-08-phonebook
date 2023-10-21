@@ -2,16 +2,7 @@ import React from 'react';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
 import { deleteContactsThunk } from 'redux/contacts/thunk';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Heading,
-  Td,
-  Text,
-} from '@chakra-ui/react';
+import { Button, Td } from '@chakra-ui/react';
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();

@@ -12,8 +12,8 @@ const FormContact = ({ closeModal }) => {
     formState: { errors },
   } = useForm({ defaultValues: { name: '', number: '' } });
 
-  const name = watch('name');
-  const number = watch('number');
+  // const name = watch('name');
+  // const number = watch('number');
 
   const dispatch = useDispatch();
   return (
