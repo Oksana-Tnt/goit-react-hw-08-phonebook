@@ -1,6 +1,6 @@
 import React from 'react';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
-import IconButton from 'components/IconButton/IconButton';
+
 import { useDispatch } from 'react-redux';
 import { deleteContactsThunk } from 'redux/contacts/thunk';
 import {

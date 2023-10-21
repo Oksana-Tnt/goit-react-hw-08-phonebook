@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { uploadAvatar } from 'redux/avatar/avatarSlice';
 
 const UploadAvatar = () => {
-  const [src, setSrc] = useState(null);
+  const [src] = useState(null);
   const [preview, setPreview] = useState(null);
   const dispatch = useDispatch();
 

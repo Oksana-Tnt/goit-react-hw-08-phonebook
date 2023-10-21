@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, WrapItem } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 const IconButton = ({ onClick, ...allyProps }) => (
   <Button
     colorScheme="teal"

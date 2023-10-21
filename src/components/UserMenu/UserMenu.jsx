@@ -1,14 +1,8 @@
 import {
   Avatar,
   Button,
-  ButtonGroup,
-  Flex,
-  Heading,
   Tag,
   TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  VStack,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';

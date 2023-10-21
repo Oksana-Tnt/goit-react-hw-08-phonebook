@@ -28,7 +28,7 @@ const RegistrationForm = () => {
     defaultValues: { name: 'user', email: 'email', password: 'password' },
   });
 
-  const name = watch('name');
+  // const name = watch('name');
   const email = watch('email');
   const password = watch('password');
 
@@ -74,7 +74,7 @@ const RegistrationForm = () => {
             size="md"
             mb={4}
           />
-          <Text>{errors.name?.message}</Text>
+          <Text>{errors.name.message}</Text>
           <FormLabel color="red" textShadow="1px 1px black">
             Email
           </FormLabel>

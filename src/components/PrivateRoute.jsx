@@ -1,11 +1,5 @@
 import { useSelector } from 'react-redux';
-import {
-  Navigate,
-  Route,
-  Router,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
 
 export const PrivateRoute = ({ children }) => {

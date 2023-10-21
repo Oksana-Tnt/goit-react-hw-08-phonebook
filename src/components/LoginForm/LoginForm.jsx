@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/thunk';
-import { useNavigate } from 'react-router-dom';
+
 import { Text } from '@chakra-ui/react';
 
 import {
@@ -15,27 +15,23 @@ import {
   AbsoluteCenter,
 } from '@chakra-ui/react';
 
-import authSelectors from 'redux/auth/auth-selectors';
-
-import { useToast } from '@chakra-ui/react';
-
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
     reset,
   } = useForm({ defaultValues: { email: 'email', password: 'password' } });
 
-  const email = watch('email');
-  const password = watch('password');
+  // const email = watch('email');
+  // const password = watch('password');
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const authError = useSelector(authSelectors.getError);
 
-  const toast = useToast();
+  // const authError = useSelector(authSelectors.getError);
+
+  // const toast = useToast();
 
   const onSubmit = data => {
     dispatch(loginThunk(data));

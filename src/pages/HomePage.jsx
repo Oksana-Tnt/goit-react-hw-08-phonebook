@@ -1,19 +1,4 @@
-import {
-  AbsoluteCenter,
-  Avatar,
-  Box,
-  Center,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Tag,
-  TagLabel,
-  TagRightIcon,
-  Text,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react';
+import { AbsoluteCenter, Box, Flex, Heading, Image } from '@chakra-ui/react';
 import PhonebookImg from '../images/111220_address_book_red_soda_icon.png';
 import backgroundImg from '../images/benjaminrobyn-jespersen-Ai9_QJaZfMc-unsplash.jpg';
 import backgroundImgLogged from '../images/grey-gradient-background-1080-x-1920-mva29ml67gjxd6ht.jpg';
@@ -22,7 +7,7 @@ import authSelectors from 'redux/auth/auth-selectors';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { Link as ChakraLink, LinkProps } from '@chakra-ui/react';
+import { Link as ChakraLink } from '@chakra-ui/react';
 import { useMediaQuery } from 'react-responsive';
 
 const HomePage = () => {
