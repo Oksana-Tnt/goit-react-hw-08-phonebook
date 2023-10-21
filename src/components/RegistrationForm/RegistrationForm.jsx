@@ -21,16 +21,11 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: { name: 'user', email: 'email', password: 'password' },
+    defaultValues: { name: '', email: '', password: '' },
   });
-
-  // const name = watch('name');
-  const email = watch('email');
-  const password = watch('password');
 
   const dispatch = useDispatch();
 
@@ -38,7 +33,7 @@ const RegistrationForm = () => {
 
   const onSubmit = data => {
     dispatch(signUpThunk(data));
-    dispatch(loginThunk({ email, password }));
+    dispatch(loginThunk(data));
 
     toast({
       title: 'Account created.',
@@ -56,7 +51,7 @@ const RegistrationForm = () => {
   return (
     <AbsoluteCenter axis="both">
       <Box display="flex" w="200px" flexDirection="column">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <FormLabel color="red" textShadow="1px 1px black" mt={5}>
             Name
           </FormLabel>
@@ -70,7 +65,6 @@ const RegistrationForm = () => {
             })}
             type="text"
             placeholder="username"
-            autoComplete="username"
             size="md"
             mb={4}
           />
@@ -87,7 +81,6 @@ const RegistrationForm = () => {
               },
             })}
             type="email"
-            autoComplete="email"
             size="md"
             mb={4}
           />
@@ -103,7 +96,6 @@ const RegistrationForm = () => {
                 message: 'Min length is 10',
               },
             })}
-            autoComplete="password"
             placeholder="password"
             size="md"
             mb={4}

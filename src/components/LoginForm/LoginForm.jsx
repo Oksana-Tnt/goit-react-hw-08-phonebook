@@ -22,11 +22,9 @@ const LoginForm = () => {
 
     formState: { errors },
     reset,
-  } = useForm({ defaultValues: { email: 'email', password: 'password' } });
+  } = useForm({ defaultValues: { email: '', password: '' } });
 
   const dispatch = useDispatch();
-
-  // const authError = useSelector(authSelectors.getError);
 
   const toast = useToast();
 
@@ -64,7 +62,6 @@ const LoginForm = () => {
               })}
               type="email"
               placeholder="user@gmail.com"
-              autoComplete="off"
               size="md"
               mb={4}
             />
@@ -83,7 +80,6 @@ const LoginForm = () => {
               })}
               type="password"
               placeholder="password"
-              autoComplete="off"
               size="md"
               mb={4}
             />
