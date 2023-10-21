@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/thunk';
 
 import { Text, useToast } from '@chakra-ui/react';
@@ -14,7 +14,6 @@ import {
   Center,
   AbsoluteCenter,
 } from '@chakra-ui/react';
-import authSelectors from 'redux/auth/auth-selectors';
 
 const LoginForm = () => {
   const {
