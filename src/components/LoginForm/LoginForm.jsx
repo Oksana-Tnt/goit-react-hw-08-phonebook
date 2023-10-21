@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from 'redux/auth/thunk';
 
-import { Text } from '@chakra-ui/react';
+import { Text, useToast } from '@chakra-ui/react';
 
 import {
   FormLabel,
@@ -14,6 +14,7 @@ import {
   Center,
   AbsoluteCenter,
 } from '@chakra-ui/react';
+import authSelectors from 'redux/auth/auth-selectors';
 
 const LoginForm = () => {
   const {
@@ -24,28 +25,24 @@ const LoginForm = () => {
     reset,
   } = useForm({ defaultValues: { email: 'email', password: 'password' } });
 
-  // const email = watch('email');
-  // const password = watch('password');
-
   const dispatch = useDispatch();
 
-  // const authError = useSelector(authSelectors.getError);
+  const authError = useSelector(authSelectors.getError);
 
-  // const toast = useToast();
+  const toast = useToast();
 
   const onSubmit = data => {
     dispatch(loginThunk(data));
 
-    // if (authError) {
-    //   toast({
-    //     title: 'Error log in',
-    //     description: 'Please, enter the correct data',
-    //     status: 'error',
-    //     duration: 5000,
-    //     isClosable: true,
-    //   });
-
-    // }
+    if (authError) {
+      toast({
+        title: 'Error log in',
+        description: 'Please, enter the correct data',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
     reset();
   };
   return (
