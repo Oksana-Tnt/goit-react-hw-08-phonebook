@@ -37,7 +37,7 @@ const PhonebookPage = () => {
         pr={10}
         position="relative"
         h={
-          contacts.length === 0 || contacts.length === 1 || !isTabletOrMobile
+          contacts.length === 0 || contacts.length === 2 || !isTabletOrMobile
             ? '100vh'
             : '100%'
         }
