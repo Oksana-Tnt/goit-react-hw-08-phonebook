@@ -48,7 +48,7 @@ const LoginForm = () => {
       <AbsoluteCenter axis="both">
         <Box w="200px">
           <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-            <FormLabel color="red" textShadow="1px 1px black">
+            <FormLabel color="red" textShadow="1px 1px white">
               Email
             </FormLabel>
 
@@ -66,7 +66,7 @@ const LoginForm = () => {
               mb={4}
             />
             <Text>{errors.email?.message}</Text>
-            <FormLabel color="red" textShadow="1px 1px black">
+            <FormLabel color="red" textShadow="1px 1px white">
               Password
             </FormLabel>
 

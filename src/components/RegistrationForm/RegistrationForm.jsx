@@ -52,7 +52,7 @@ const RegistrationForm = () => {
     <AbsoluteCenter axis="both">
       <Box display="flex" w="200px" flexDirection="column">
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-          <FormLabel color="red" textShadow="1px 1px black" mt={5}>
+          <FormLabel color="red" textShadow="1px 1px white" mt={5}>
             Name
           </FormLabel>
           <Input
@@ -69,7 +69,7 @@ const RegistrationForm = () => {
             mb={4}
           />
           <Text>{errors.name?.message}</Text>
-          <FormLabel color="red" textShadow="1px 1px black">
+          <FormLabel color="red" textShadow="1px 1px white">
             Email
           </FormLabel>
           <Input
@@ -85,7 +85,7 @@ const RegistrationForm = () => {
             mb={4}
           />
           <Text>{errors.email?.message}</Text>
-          <FormLabel color="red" textShadow="1px 1px black">
+          <FormLabel color="red" textShadow="1px 1px white">
             Password
           </FormLabel>
           <Input
