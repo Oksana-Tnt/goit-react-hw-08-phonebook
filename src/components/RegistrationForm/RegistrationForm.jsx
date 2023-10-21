@@ -56,7 +56,7 @@ const RegistrationForm = () => {
   return (
     <AbsoluteCenter axis="both">
       <Box display="flex" w="200px" flexDirection="column">
-        <form onSubmit={handleSubmit(onSubmit)} mt={5}>
+        <form onSubmit={handleSubmit(onSubmit)} mt={10}>
           <FormLabel color="red" textShadow="1px 1px black">
             Name
           </FormLabel>
