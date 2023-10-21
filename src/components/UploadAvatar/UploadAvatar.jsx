@@ -21,7 +21,7 @@ const UploadAvatar = () => {
         width={300}
         height={300}
         onCrop={onCrop}
-        onClose={dispatch(uploadAvatar(preview))}
+        onClose={() => dispatch(uploadAvatar(preview))}
       />
     </>
   );

@@ -27,22 +27,23 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const authError = useSelector(authSelectors.getError);
+  // const authError = useSelector(authSelectors.getError);
 
   const toast = useToast();
 
   const onSubmit = data => {
-    dispatch(loginThunk(data));
-
-    if (authError) {
-      toast({
-        title: 'Error log in',
-        description: 'Please, enter the correct data',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
+    dispatch(loginThunk(data))
+      .unwrap()
+      .catch(() => {
+        toast({
+          title: 'Error log in',
+          description: 'Please, enter the correct data',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
       });
-    }
+
     reset();
   };
   return (

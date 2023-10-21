@@ -19,7 +19,7 @@ const getCustomActions = status => {
 
 const handlePending = state => {
   state.isLoading = true;
-  state.authError = !state.authError;
+  state.authError = false;
 };
 
 const handleRejected = state => {
