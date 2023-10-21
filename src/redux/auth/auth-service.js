@@ -1,24 +1,24 @@
-import { dellToken, instance, setToken } from 'redux/services';
+import { instance, token } from 'redux/services';
 
 export const signUp = async body => {
   const { data } = await instance.post('/users/signup', body);
+  token.set(data.token);
   return data;
 };
 
 export const login = async body => {
   const { data } = await instance.post('users/login', body);
-  setToken(data.token);
-  console.log(data);
+  token.set(data.token);
   return data;
 };
 
 export const logout = async () => {
   const { data } = await instance.post('users/logout');
-  dellToken();
+  token.unset();
   return data;
 };
 
-export const getCurrenUser = async () => {
+export const fetchCurrenUser = async () => {
   const { data } = await instance.get('users/current');
   return data;
 };

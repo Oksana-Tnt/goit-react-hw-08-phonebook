@@ -1,6 +1,7 @@
-import { IconButton } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
 
 const AuthNav = () => {
   const navigate = useNavigate();
@@ -13,17 +14,16 @@ const AuthNav = () => {
     navigate('/signUp');
   };
   return (
-    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-      <IconButton area-label="login" onClick={handleLogIn}>
-        Log in
-      </IconButton>
-
-      <NavLink to="/signup">
-        <IconButton area-label="signUp" onClick={handleSignUp}>
-          Sign up
-        </IconButton>
-      </NavLink>
-    </div>
+    <>
+      <VStack spacing="24px">
+        <Button colorScheme="red" size="sm" w="75px" onClick={handleSignUp}>
+          Sign Up
+        </Button>
+        <Button colorScheme="red" size="sm" w="75px" onClick={handleLogIn}>
+          Log in
+        </Button>
+      </VStack>
+    </>
   );
 };
 

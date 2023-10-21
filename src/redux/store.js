@@ -13,13 +13,19 @@ import { contactsAPI } from './contactsAPI';
 import { authReducer } from './auth/authSlice';
 import { contactsReducer } from './contacts/contactsSlice';
 import { filterReducer } from './filter/filterSlice';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from 'redux-persist/es/persistReducer';
+import { avatarReducer } from './avatar/avatarSlice';
+
+const authPersistConfig = { key: 'auth', storage, whitelist: ['token'] };
+const avatarPersistConfig = { key: 'avatar', storage, whitelist: ['preview'] };
 
 export const store = configureStore({
   reducer: {
-    // [contactsAPI.reducerPath]: contactsAPI.reducer,
     contacts: contactsReducer,
     filter: filterReducer,
-    auth: authReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
+    avatar: persistReducer(avatarPersistConfig, avatarReducer),
   },
 
   middleware: getDefaultMiddleware =>
@@ -29,3 +35,5 @@ export const store = configureStore({
       },
     }).concat(contactsAPI.middleware),
 });
+
+export const persistor = persistStore(store);

@@ -1,9 +1,23 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from 'redux/auth/thunk';
 import { useNavigate } from 'react-router-dom';
+import { Text } from '@chakra-ui/react';
+
+import {
+  FormLabel,
+  Input,
+  Button,
+  Box,
+  Center,
+  AbsoluteCenter,
+} from '@chakra-ui/react';
+
+import authSelectors from 'redux/auth/auth-selectors';
+
+import { useToast } from '@chakra-ui/react';
 
 const LoginForm = () => {
   const {
@@ -11,69 +25,84 @@ const LoginForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({ defaultValues: { email: '', password: '' } });
+    reset,
+  } = useForm({ defaultValues: { email: 'email', password: 'password' } });
 
   const email = watch('email');
   const password = watch('password');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authError = useSelector(authSelectors.getError);
 
+  const toast = useToast();
+
+  const onSubmit = data => {
+    dispatch(loginThunk(data));
+
+    // if (authError) {
+    //   toast({
+    //     title: 'Error log in',
+    //     description: 'Please, enter the correct data',
+    //     status: 'error',
+    //     duration: 5000,
+    //     isClosable: true,
+    //   });
+
+    // }
+    reset();
+  };
   return (
     <>
-      <h1>Log in</h1>
-      <form
-        className="row g-3"
-        onSubmit={handleSubmit(data => {
-          dispatch(loginThunk(data));
-          navigate('/phonebook');
-        })}
-      >
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
-            Email
-          </label>
-          <input
-            {...register('email', {
-              required: true,
-              minLength: {
-                value: 6,
-                message: 'Min length is 6',
-              },
-            })}
-            type="email"
-            className="form-control"
-            id="exampleFormControlInput1"
-            placeholder="email"
-          />
-          <p>{email}</p>
-          <p>{errors.email?.message}</p>
-        </div>
-        <label htmlFor="exampleFormControlInput1" className="form-label">
-          Password
-        </label>
-        <input
-          {...register('password', {
-            required: true,
-            minLength: {
-              value: 6,
-              message: 'Min length is 6',
-            },
-          })}
-          type="password"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="password"
-        />
-        <p>{password}</p>
-        <p>{errors.password?.message}</p>
+      <AbsoluteCenter axis="both">
+        <Box w="200px">
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+            <FormLabel color="red" textShadow="1px 1px black">
+              Email
+            </FormLabel>
 
-        <div className="mb-3">
-          <button type="submit" className="btn btn-primary mb-3">
-            Sign Up
-          </button>
-        </div>
-      </form>
+            <Input
+              {...register('email', {
+                required: true,
+                minLength: {
+                  value: 6,
+                  message: 'Min length is 6',
+                },
+              })}
+              type="email"
+              placeholder="user@gmail.com"
+              autoComplete="off"
+              size="md"
+              mb={4}
+            />
+            <Text>{errors.email?.message}</Text>
+            <FormLabel color="red" textShadow="1px 1px black">
+              Password
+            </FormLabel>
+
+            <Input
+              {...register('password', {
+                required: true,
+                minLength: {
+                  value: 6,
+                  message: 'Min length is 6',
+                },
+              })}
+              type="password"
+              placeholder="password"
+              autoComplete="off"
+              size="md"
+              mb={4}
+            />
+            <Text>{errors.password?.message}</Text>
+            <Center>
+              <Button type="submit" colorScheme="red" size="sm" width="75px">
+                Log in
+              </Button>
+            </Center>
+          </form>
+        </Box>
+      </AbsoluteCenter>
     </>
   );
 };

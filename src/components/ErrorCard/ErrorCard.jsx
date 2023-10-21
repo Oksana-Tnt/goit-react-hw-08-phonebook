@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../saddest-cat-luhu-maggie-liu-lanlan731-38-59c0bfed09657__700.jpg';
+import img from '../../images/saddest-cat-luhu-maggie-liu-lanlan731-38-59c0bfed09657__700.jpg';
 
 const ErrorCard = () => {
   return (

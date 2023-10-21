@@ -1,11 +1,12 @@
 import React from 'react';
-
+import { Button, WrapItem } from '@chakra-ui/react';
 const IconButton = ({ onClick, ...allyProps }) => (
-  <button
-    className="btn btn-outline-success"
+  <Button
+    colorScheme="teal"
+    variant="outline"
     onClick={onClick}
     {...allyProps}
-  ></button>
+  ></Button>
 );
 
 IconButton.defaultProps = {

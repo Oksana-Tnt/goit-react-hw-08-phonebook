@@ -1,9 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { signUp } from 'redux/auth/auth-service';
-import { useToast } from '@chakra-ui/react';
+
+import {
+  AbsoluteCenter,
+  Box,
+  Button,
+  Center,
+  FormLabel,
+  Input,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { loginThunk, signUpThunk } from 'redux/auth/thunk';
+import { useDispatch } from 'react-redux';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -11,39 +22,45 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm({ defaultValues: { name: '', email: '', password: '' } });
+  } = useForm({
+    defaultValues: { name: 'user', email: 'email', password: 'password' },
+  });
 
   const name = watch('name');
   const email = watch('email');
   const password = watch('password');
+
+  const dispatch = useDispatch();
+
   const toast = useToast();
 
+  const onSubmit = data => {
+    dispatch(signUpThunk(data));
+    dispatch(loginThunk({ email, password }));
+
+    toast({
+      title: 'Account created.',
+      description: "We've created your account for you.",
+      status: 'success',
+      duration: 4000,
+      isClosable: true,
+    });
+
+    navigate('/phonebook');
+
+    reset();
+  };
+
   return (
-    <>
-      <h1>RegistrationForm</h1>
-      <form
-        className="row g-3"
-        onSubmit={handleSubmit(data => {
-          signUp(data)
-            .then(() => {
-              toast({
-                title: 'Account created.',
-                description: "We've created your account for you.",
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-              });
-              navigate('/login');
-            })
-            .catch(err => toast(err));
-        })}
-      >
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+    <AbsoluteCenter axis="both">
+      <Box display="flex" w="200px" flexDirection="column">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormLabel color="red" textShadow="1px 1px black">
             Name
-          </label>
-          <input
+          </FormLabel>
+          <Input
             {...register('name', {
               required: 'This is required',
               minLength: {
@@ -52,16 +69,16 @@ const RegistrationForm = () => {
               },
             })}
             type="text"
-            className="form-control"
-            id="exampleFormControlInput1"
             placeholder="username"
+            autoComplete="username"
+            size="md"
+            mb={4}
           />
-          <p>{name}</p>
-          <p>{errors.name?.message}</p>
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+          <Text>{errors.name?.message}</Text>
+          <FormLabel color="red" textShadow="1px 1px black">
             Email
-          </label>
-          <input
+          </FormLabel>
+          <Input
             {...register('email', {
               required: true,
               minLength: {
@@ -70,39 +87,36 @@ const RegistrationForm = () => {
               },
             })}
             type="email"
-            className="form-control"
-            id="exampleFormControlInput1"
-            placeholder="email"
+            autoComplete="email"
+            size="md"
+            mb={4}
           />
-          <p>{email}</p>
-          <p>{errors.email?.message}</p>
-        </div>
-        <label htmlFor="exampleFormControlInput1" className="form-label">
-          Password
-        </label>
-        <input
-          {...register('password', {
-            required: true,
-            minLength: {
-              value: 6,
-              message: 'Min length is 6',
-            },
-          })}
-          type="password"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="password"
-        />
-        <p>{password}</p>
-        <p>{errors.password?.message}</p>
-
-        <div className="mb-3">
-          <button type="submit" className="btn btn-primary mb-3">
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </>
+          <Text>{errors.email?.message}</Text>
+          <FormLabel color="red" textShadow="1px 1px black">
+            Password
+          </FormLabel>
+          <Input
+            {...register('password', {
+              required: true,
+              minLength: {
+                value: 6,
+                message: 'Min length is 10',
+              },
+            })}
+            autoComplete="password"
+            placeholder="password"
+            size="md"
+            mb={4}
+          />
+          <Text>{errors.password?.message}</Text>
+          <Center>
+            <Button type="submit" colorScheme="red" size="sm" width="75px">
+              Sign up
+            </Button>
+          </Center>
+        </form>
+      </Box>
+    </AbsoluteCenter>
   );
 };
 

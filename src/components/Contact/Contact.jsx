@@ -1,22 +1,39 @@
 import React from 'react';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
-import IconButton from 'components/IconButton/IconButton';
 import { useDispatch } from 'react-redux';
 import { deleteContactsThunk } from 'redux/contacts/thunk';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Td,
+  Text,
+} from '@chakra-ui/react';
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
   return (
     <>
-      <div className="d-grid gap-2 d-flex justify-content-between">
-        {name} : {number}
-        <IconButton
+      <Td textAlign="center" fontSize="lg">
+        {name}
+      </Td>
+      <Td textAlign="center" fontSize="lg">
+        {number}
+      </Td>
+      <Td textAlign="center">
+        <Button
           onClick={() => dispatch(deleteContactsThunk(id))}
           area-label="Delete contact"
+          colorScheme="red"
+          size="sm"
+          w="50px"
         >
           <RiDeleteBin6Fill />
-        </IconButton>
-      </div>
+        </Button>
+      </Td>
     </>
   );
 };
