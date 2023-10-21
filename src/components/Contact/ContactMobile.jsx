@@ -4,12 +4,10 @@ import { useDispatch } from 'react-redux';
 import { deleteContactsThunk } from 'redux/contacts/thunk';
 import {
   Button,
-  Card,
   CardBody,
   CardFooter,
   CardHeader,
   Heading,
-  Td,
   Text,
 } from '@chakra-ui/react';
 

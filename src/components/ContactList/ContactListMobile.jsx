@@ -19,7 +19,7 @@ const ContactListMobile = () => {
 
   const contacts = useSelector(state => state.contacts.contacts);
   const status = useSelector(state => state.contacts.status);
-  const auth = useSelector(state => state.auth.token);
+  // const auth = useSelector(state => state.auth.token);
   const filterContact = useSelector(state => state.filter.filter);
 
   const filteredContacts = contacts.filter(contact =>

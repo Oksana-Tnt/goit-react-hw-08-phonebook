@@ -8,7 +8,6 @@ const FormContact = ({ closeModal }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({ defaultValues: { name: '', number: '' } });
 

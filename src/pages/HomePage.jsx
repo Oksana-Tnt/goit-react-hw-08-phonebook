@@ -12,7 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const HomePage = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const name = useSelector(authSelectors.getUserName);
+  // const name = useSelector(authSelectors.getUserName);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   return (
     <Box
