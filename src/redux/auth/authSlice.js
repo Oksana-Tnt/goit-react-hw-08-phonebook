@@ -6,8 +6,6 @@ import {
   logoutThunk,
   signUpThunk,
 } from './thunk';
-import { toast } from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 const defaultStatus = {
   pending: 'pending',

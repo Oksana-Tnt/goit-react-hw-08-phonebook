@@ -1,5 +1,4 @@
 import { instance } from 'redux/services';
-import axios from 'axios';
 
 export const fetchContacts = async () => {
   const { data } = await instance.get('/contacts');
