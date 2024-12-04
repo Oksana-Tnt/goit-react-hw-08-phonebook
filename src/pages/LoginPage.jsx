@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 const LoginPage = () => {
   const navigate = useNavigate();
   const handleSignUp = () => {
-    navigate('/signUp');
+    navigate('/home');
   };
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1200px)' });
